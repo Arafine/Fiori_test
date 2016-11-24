@@ -1,0 +1,23 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form">
+	<ResponsivePopover title="{i18n>contactPopoverTitle}" class="sapUiPopupWithPadding" placement="Bottom">
+		<endButton>
+			<Button text="{i18n>contactCancelButton}" press="onCloseButton"/>
+		</endButton>
+		<content>
+			<form:SimpleForm id="simpleForm">
+				<form:content>
+					<Label text="{i18n>contactFullNameLabel}"/>
+					<Text text="{FirstName} {LastName}"/>
+					<Label text="{i18n>contactSexLabel}"/>
+					<Text text="{path: 'Sex', formatter: '.formatter.sexFormat'}"/>
+					<Label text="{i18n>contactPhoneNumberLabel}"/>
+					<Text text="{PhoneNumber}"/>
+					<Label text="{i18n>contactEmailLabel}"/>
+					<Text text="{EmailAddress}"/>
+					<Label text="{i18n>contactLanguageLabel}"/>
+					<Text text="{path: 'Language', formatter: '.formatter.languageFormat'}"/>
+				</form:content>
+			</form:SimpleForm>
+		</content>
+	</ResponsivePopover>
+</core:FragmentDefinition>

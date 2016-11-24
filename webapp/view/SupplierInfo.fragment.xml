@@ -1,0 +1,9 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<List id="supplierList">
+		<items>
+			<StandardListItem icon="sap-icon://globe" title="{ToSupplier/City} ({ToSupplier/Plant})"/>
+			<StandardListItem icon="sap-icon://building" title="{ToSupplier/Companyname}"/>
+			<StandardListItem icon="sap-icon://map" title="{ToSupplier/Address}"/>
+		</items>
+	</List>
+</core:FragmentDefinition>

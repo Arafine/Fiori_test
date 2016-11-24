@@ -1,0 +1,44 @@
+<mvc:View controllerName="btech.szkolenia.controller.Detail" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic"
+	xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<semantic:DetailPage id="page" navButtonPress="onNavBack" showNavButton="{device>/system/phone}" title="{i18n>detailTitle}"
+		busy="{detailView>/busy}" busyIndicatorDelay="{detailView>/delay}">
+		<semantic:content>
+			<ObjectHeader id="objectHeader" title="{ProductId}" number="{ path: 'Content', formatter: '.formatter.currencyValue' }"
+				numberUnit="{path: 'Unit', formatter: '.formatter.pieceUnit'}">
+				<attributes>
+					<ObjectAttribute text="{= ${path: 'Net', formatter: '.formatter.floatParsing'} + ' ' + ${WeightUnit}}"/>
+					<ObjectAttribute
+						text="{= ${path: 'Length', formatter: '.formatter.floatParsing'} + ' x ' + ${path: 'Width', formatter: '.formatter.floatParsing'} + ' x ' + ${path: 'Height', formatter: '.formatter.floatParsing'} + ' ' + ${Dimension}}"/>
+				</attributes>
+				<statuses>
+					<ObjectStatus text="{path: 'Content', formatter: '.formatter.quantityStatusText'}" state="{= ${Content} > 0 ? 'Success' : 'Error'}"/>
+				</statuses>
+			</ObjectHeader>
+			<IconTabBar id="iconTabBar" class="sapUiResponsiveContentPadding">
+				<items>
+					<IconTabFilter id="iconTabBarFilter1" icon="sap-icon://hint" tooltip="{i18n>detailIconTabBarInfo}">
+						<form:SimpleForm id="objectForm">
+							<form:content>
+								<Label text="{i18n>productMatTypeLabel}"/>
+								<Text text="{MatType}"/>
+								<Label text="{i18n>productMatGrpLabel}"/>
+								<Text text="{MatGrp}"/>
+								<Label text="{i18n>productPersonLabel}"/>
+								<Link text="{i18n>productPersonLink}" press="onContactDetailPress"/>
+								<Label text="{i18n>productDateLabel}"/>
+								<Text text="{path: 'CreatedOn', formatter: '.formatter.dateParse'}"/>
+							</form:content>
+						</form:SimpleForm>
+					</IconTabFilter>
+					<IconTabFilter id="iconTabBarFilter2" icon="sap-icon://factory" tooltip="{i18n>detailIconTabBarAttachments}"
+						text="{i18n>detailIconTabSupplier}">
+						<core:Fragment fragmentName="btech.szkolenia.view.SupplierInfo" type="XML"/>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</semantic:content>
+		<semantic:mainAction>
+			<semantic:MainAction press="onMainButtonPress" text="{i18n>productMainBtn}" id="mainBtn"/>
+		</semantic:mainAction>
+	</semantic:DetailPage>
+</mvc:View>

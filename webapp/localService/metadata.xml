@@ -1,0 +1,104 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="Z_BTECH_SZKOL_SRV" xml:lang="pl" sap:schema-version="1">
+            <EntityType Name="Products" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ProductId"/>
+                </Key>
+                <Property Name="ProductId" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Materiał" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="MatGrp" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Grupa mat.opak." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MatType" Type="Edm.String" Nullable="false" MaxLength="48" sap:label="Materiał podst." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Lang" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Język" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Content" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:label="Wlk. par. kalk." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Desc" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Oznaczenie" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Plant" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Zakład" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="CreatedOn" Type="Edm.DateTime" Precision="7" sap:label="Utworzono dnia" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="CreatedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Utworzone przez" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Unit" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Podst.JM" sap:creatable="false" sap:updatable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="Gross" Type="Edm.Decimal" Precision="13" Scale="3" sap:label="Waga brutto" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Net" Type="Edm.Decimal" Precision="13" Scale="3" sap:label="Waga netto" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="WeightUnit" Type="Edm.String" MaxLength="3" sap:label="Jednostka wagi" sap:creatable="false" sap:updatable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="Length" Type="Edm.Decimal" Precision="13" Scale="3" sap:label="Długość" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Width" Type="Edm.Decimal" Precision="13" Scale="3" sap:label="Szerokość" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Height" Type="Edm.Decimal" Precision="13" Scale="3" sap:label="Wysokość" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Dimension" Type="Edm.String" MaxLength="3" sap:label="Jednostka" sap:creatable="false" sap:updatable="false" sap:semantics="unit-of-measure"/>
+                <NavigationProperty Name="ToSupplier" Relationship="Z_BTECH_SZKOL_SRV.ProductToSupplier" FromRole="ToRole_ProductToSupplier" ToRole="FromRole_ProductToSupplier"/>
+                <NavigationProperty Name="ToContact" Relationship="Z_BTECH_SZKOL_SRV.ProductToContact" FromRole="ToRole_ProductToContact" ToRole="FromRole_ProductToContact"/>
+            </EntityType>
+            <EntityType Name="Supplier" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Plant"/>
+                </Key>
+                <Property Name="Plant" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Zakład" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Companyname" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Nazwa 1" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Address" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Ulica/Nr domu" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="City" Type="Edm.String" Nullable="false" MaxLength="25" sap:label="Miasto" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Region" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Region" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Postalcode" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Kod pocztowy" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Country" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Kraj" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="ToProducts" Relationship="Z_BTECH_SZKOL_SRV.ProductToSupplier" FromRole="FromRole_ProductToSupplier" ToRole="ToRole_ProductToSupplier"/>
+            </EntityType>
+            <EntityType Name="Contact" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Username"/>
+                </Key>
+                <Property Name="Username" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Użytkownik" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FirstName" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Imię" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LastName" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Nazwisko" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Sex" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Płeć" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PhoneNumber" Type="Edm.String" Nullable="false" MaxLength="16" sap:label="Tel. prywatny" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EmailAddress" Type="Edm.String" Nullable="false" MaxLength="241" sap:label="Adres e-mail" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Language" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Język" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="ToProducts" Relationship="Z_BTECH_SZKOL_SRV.ProductToContact" FromRole="FromRole_ProductToContact" ToRole="ToRole_ProductToContact"/>
+            </EntityType>
+            <Association Name="ProductToSupplier" sap:content-version="1">
+                <End Type="Z_BTECH_SZKOL_SRV.Supplier" Multiplicity="1" Role="FromRole_ProductToSupplier"/>
+                <End Type="Z_BTECH_SZKOL_SRV.Products" Multiplicity="*" Role="ToRole_ProductToSupplier"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_ProductToSupplier">
+                        <PropertyRef Name="Plant"/>
+                    </Principal>
+                    <Dependent Role="ToRole_ProductToSupplier">
+                        <PropertyRef Name="Plant"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="ProductToContact" sap:content-version="1">
+                <End Type="Z_BTECH_SZKOL_SRV.Contact" Multiplicity="1" Role="FromRole_ProductToContact"/>
+                <End Type="Z_BTECH_SZKOL_SRV.Products" Multiplicity="*" Role="ToRole_ProductToContact"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_ProductToContact">
+                        <PropertyRef Name="Username"/>
+                    </Principal>
+                    <Dependent Role="ToRole_ProductToContact">
+                        <PropertyRef Name="CreatedBy"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="Z_BTECH_SZKOL_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ProductsSet" EntityType="Z_BTECH_SZKOL_SRV.Products" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="SupplierSet" EntityType="Z_BTECH_SZKOL_SRV.Supplier" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ContactSet" EntityType="Z_BTECH_SZKOL_SRV.Contact" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="ProductToContactSet" Association="Z_BTECH_SZKOL_SRV.ProductToContact" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ContactSet" Role="FromRole_ProductToContact"/>
+                    <End EntitySet="ProductsSet" Role="ToRole_ProductToContact"/>
+                </AssociationSet>
+                <AssociationSet Name="ProductToSupplierSet" Association="Z_BTECH_SZKOL_SRV.ProductToSupplier" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="SupplierSet" Role="FromRole_ProductToSupplier"/>
+                    <End EntitySet="ProductsSet" Role="ToRole_ProductToSupplier"/>
+                </AssociationSet>
+                <FunctionImport Name="ProductsByPlants" ReturnType="Collection(Z_BTECH_SZKOL_SRV.Products)" EntitySet="ProductsSet" m:HttpMethod="GET">
+                    <Parameter Name="Plant" Type="Edm.String" Mode="In" MaxLength="4"/>
+                </FunctionImport>
+            </EntityContainer>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/Z_BTECH_SZKOL_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/Z_BTECH_SZKOL_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>
